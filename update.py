@@ -11,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 import base64
 from io import BytesIO, StringIO
-
+import os
 # ------------------------------
 # Helper: background image
 # ------------------------------
@@ -556,7 +556,10 @@ if submit:
 # ------------------------------
 st.set_page_config(page_title="FinXtract (Screener)", layout="wide")
 
-bg_base64 = load_bg_base64(r"bg\bg-image.png")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+bg_base64 = load_bg_base64(
+    os.path.join(BASE_DIR, "bg", "bg-image.png")
+)
 
 if not st.session_state.get("screener_tables", False):
 
@@ -958,5 +961,6 @@ if tables:
         file_name=f"{company_name.replace(' ', '_')}-{statement_mode.lower()}_screener.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+
 
 
