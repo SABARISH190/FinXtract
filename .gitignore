@@ -4,4 +4,4 @@ __pycache__/
 env/
 playwright/.cache/
 .cache/
-bg/*.png
+
