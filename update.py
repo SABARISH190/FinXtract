@@ -1,7 +1,9 @@
-import asyncio
 from unittest import result
-asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-from playwright.sync_api import sync_playwright
+import sys
+import asyncio
+
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())from playwright.sync_api import sync_playwright
 
 import streamlit as st
 import pandas as pd
@@ -956,3 +958,4 @@ if tables:
         file_name=f"{company_name.replace(' ', '_')}-{statement_mode.lower()}_screener.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+
